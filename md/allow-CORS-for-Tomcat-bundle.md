@@ -90,13 +90,13 @@ _**Important Note 2:** to use this page you will need to replace the BONITA_ACCE
      redirect: false
    };
    $.ajax({
-     url: "http://192.168.1.55:16936/bonita/loginservice",
+     url: "http://BONITA_ACCESS_URL/bonita/loginservice",
      type: "POST",
      data: formData,
      xhrFields: {withCredentials: true},
      success: function(data, textStatus, jqXHR) {
            $.ajax({
-             url: "http://192.168.1.55:16936/bonita/API/system/session/1",
+             url: "http://BONITA_ACCESS_URL/bonita/API/system/session/1",
              type: "GET",
              xhrFields: {withCredentials: true},
              success: function(data, textStatus, jqXHR) {
@@ -105,7 +105,7 @@ _**Important Note 2:** to use this page you will need to replace the BONITA_ACCE
                    console.log('X-Bonita-API-Token: ' + apiToken);
                    var formData = {"title":"Mr","manager_id":"0","job_title":"Chief Executive Officer","lastname":"Jobs","firstname":"Will"};
                    $.ajax({
-                         url: "http://192.168.1.55:16936/bonita/API/identity/user/1",
+                         url: "http://BONITA_ACCESS_URL/bonita/API/identity/user/1",
                          type: "PUT",
                          contentType: "application/json",
                          /*passing the X-Bonita-API-Token for the CSRF security filter*/
