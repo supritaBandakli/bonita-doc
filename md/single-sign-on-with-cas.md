@@ -95,13 +95,13 @@ Bonita BPM uses the CAS LoginModule in the JASIG implementation, so see the CAS 
 6. Update [`bonita-tenant-sp-custom.properties`](BonitaBPM_platform_setup.md) from `setup/platform_conf/initial/tenant_template_engine/` if platform has not been initialized yet or `setup/platform_conf/current/tenants/[TENANT_ID]/tenant_engine/` and `setup/platform_conf/current/tenant_template_engine/`.
    1. Remove the comment flags from these lines:
       `authentication.service.ref.name=jaasAuthenticationService`
-   2. Specify the relevant IP address and port number.
-   3. **Optionally**, to enable anonymous user to access a process, uncomment this lines:
+   2. **Optionally**, to enable anonymous user to access a process, uncomment this lines:
       ```
       authenticator.delegate=casAuthenticatorDelegate
       authentication.delegate.cas.server.url.prefix=http://ip_address:port
       authentication.delegate.cas.service.url=http://ip_address:port/bonita/loginservice
       ```
+      Specify the relevant IP address and port number.
 
 ## Configure Bonita BPM Engine and Tomcat for CAS
 
@@ -150,7 +150,7 @@ From 7.3.0, this configuration requires not to have initialized the platform or 
       authentication.delegate.cas.server.url.prefix=http://ip_address:port
       authentication.delegate.cas.service.url=http://ip_address:port/bonita/loginservice
       ```
-   3. Specify the relevant IP address and port number.
+      Specify the relevant IP address and port number.
 
 #### CAS SSO and Java client application
 
@@ -165,7 +165,7 @@ If you are configuring Bonita BPM and Tomcat in a cluster environment for CAS, t
 2. Remove the `WEB-INF/lib/commons-logging-1.1.1.jar` file from the `bonita.war`.
 3. Remove the `tomcat/webapps/bonita/WEB-INF/lib/commons-logging-1.1.1.jar` file (if it is present).
 
-#### Configure Bonita client for CAS
+## Configure Bonita client for CAS
 
 1. For each tenant, edit `authenticationManager-config.properties` to enable the CASRemoteAuthenticationManager and its properties.
 The service URL in the properties file must be the same as that in the JAAS file. Edit the `authenticationManager-config.properties` located in `platform_conf/initial/tenant_template_portal` for not initialized platform or `platform_conf/current/tenant_template_portal` and `platform_conf/current/tenants/[TENANT_ID]/tenant_portal/` to have them have the following content (specify the relevant IP address and ports):
