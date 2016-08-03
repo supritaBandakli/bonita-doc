@@ -131,7 +131,7 @@ remote.connectionprovider.create.options.org.xnio.Options.SSL_ENABLED=false
 remote.connections=default
 
 remote.connection.default.host=myhostname
-remote.connection.default.port = 4447
+remote.connection.default.port = 8080
 remote.connection.default.connect.options.org.xnio.Options.SASL_POLICY_NOANONYMOUS=false
 remote.connection.default.username=bonita
 remote.connection.default.password=bpm
