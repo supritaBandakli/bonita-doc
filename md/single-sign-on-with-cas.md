@@ -54,15 +54,13 @@ For a standard installation, it is not necessary to modify this file.
 To configure Bonita BPM Engine for CAS:
 
 1. If you do not already have it, download the Subscription edition deploy zip from the customer portal.
-2. Add the CAS module. To do this, copy cas-3.3.1-module/org to WILDFLY_HOME/modules to merge the CAS module with the existing modules.
-3. Make the CAS module global so that it can be used by any application. To do this, edit `WILDFLY_HOME/standalone/configuration/standalone.xml` and change the definition of the `ee` subsystem to the following:
+2. Add the CAS module. To do this, copy `cas-3.3.1-module/org` to `WILDFLY_HOME/modules` to merge the CAS module with the existing modules.
+3. Make the CAS module global so that it can be used by any application. To do this, edit `WILDFLY_HOME/standalone/configuration/standalone.xml` and change the definition of the `ee` subsystem to add the following _global-module_:
 
 ```xml
- <subsystem xmlns="urn:jboss:domain:ee:1.0">
-    <global-modules>
-        <module name="org.jasig.cas" slot="main"/>
-     </global-modules>
-</subsystem>
+<global-modules>
+  <module name="org.jasig.cas" slot="main"/>
+</global-modules>
 ```
 
 4. Edit `WILDFLY_HOME/standalone/configuration/standalone.xml` and add the BonitaAuthentication module. 
@@ -95,13 +93,13 @@ Bonita BPM uses the CAS LoginModule in the JASIG implementation, so see the CAS 
 6. Update [`bonita-tenant-sp-custom.properties`](BonitaBPM_platform_setup.md) from `setup/platform_conf/initial/tenant_template_engine/` if platform has not been initialized yet or `setup/platform_conf/current/tenants/[TENANT_ID]/tenant_engine/` and `setup/platform_conf/current/tenant_template_engine/`.
    1. Remove the comment flags from these lines:
       `authentication.service.ref.name=jaasAuthenticationService`
-   2. Specify the relevant IP address and port number.
    3. **Optionally**, to enable anonymous user to access a process, uncomment this lines:
       ```
       authenticator.delegate=casAuthenticatorDelegate
       authentication.delegate.cas.server.url.prefix=http://ip_address:port
-      authentication.delegate.cas.service.url=http://ip_address:port/bonita/loginservice
+      authentication.delegate.cas.service.url=http://ip_address:port/bonita/
       ```
+      Specify the relevant IP address and port number.
 
 ## Configure Bonita BPM Engine and Tomcat for CAS
 
@@ -121,7 +119,7 @@ From 7.3.0, this configuration requires not to have initialized the platform or 
        ticketValidatorClass="org.jasig.cas.client.validation.Cas20ServiceTicketValidator"
        casServerUrlPrefix="http://ip_address:port/cas"
        tolerance="20000"
-       service="http://ip_address:port/loginservice"
+       service="http://ip_address:port/"
        defaultRoles="admin,operator"
        roleAttributeNames="memberOf,eduPersonAffiliation"
        principalGroupName="CallerPrincipal"
@@ -165,7 +163,7 @@ If you are configuring Bonita BPM and Tomcat in a cluster environment for CAS, t
 2. Remove the `WEB-INF/lib/commons-logging-1.1.1.jar` file from the `bonita.war`.
 3. Remove the `tomcat/webapps/bonita/WEB-INF/lib/commons-logging-1.1.1.jar` file (if it is present).
 
-#### Configure Bonita client for CAS
+## Configure Bonita client for CAS
 
 1. For each tenant, edit `authenticationManager-config.properties` to enable the CASRemoteAuthenticationManager and its properties.
 The service URL in the properties file must be the same as that in the JAAS file. Edit the `authenticationManager-config.properties` located in `platform_conf/initial/tenant_template_portal` for not initialized platform or `platform_conf/current/tenant_template_portal` and `platform_conf/current/tenants/[TENANT_ID]/tenant_portal/` to have them have the following content (specify the relevant IP address and ports):
@@ -183,14 +181,11 @@ Cas.bonitaServiceURL = http://ip_address:port/bonita/loginservice
 logout.link.hidden=true
 ```
 
-2. Make sure that the default tenant id is the same on both the client side and server side. 
-To do this, you can set the `platform.tenant.default.id` property in `platform-tenant-config.properties` in `platform_conf/initial/platform_portal/` or `platform_conf/current/platform_portal/` if platform has already been initialized.
-
 ### Troubleshoot
 
-To troubleshoote SSO login issues, you need to increase the [log level](logging.md) to `ALL` in order for errors to be displayed in the log files (by default, they are not).
+To troubleshoote SSO login issues, you need to increase the [log level](logging.md) to `ALL` in order for login errors details to be displayed in the log files (by default, they are not).
 
-## Configure logout behaviour
+### Configure logout behaviour
 
 #### Bonita BPM Portal
 
@@ -232,7 +227,7 @@ The Ticket Granting Ticket is an exposed resource. It has a unique URL.
 ##### **Request for a Ticket Granting Ticket Resource**
 | | |
 |:-|:-|
-| Request URL | `http://www.your_cas_server_url/cas/v1/tickets` |
+| Request URL | `http://your_cas_server_url/cas/v1/tickets` |
 | Request Method | POST |
 | Form Data | Username: walter.bates  <br/> Password: bpm |
 
@@ -268,7 +263,7 @@ Take the ST response and paste it in the url of the Bonita BPM Engine login requ
 
 | | |
 |:-|:-|
-| Request URL | `bonita_server_url/loginservice?ticket={ST} `| 
+| Request URL | `bonita_server_url/?ticket={ST} `| 
 | Request Method | GET| 
 | Form Data | service={form encoded parameter for the service url}| 
 
