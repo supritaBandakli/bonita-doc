@@ -253,8 +253,10 @@
   * [Create a case overview page using the UI Designer](uid-case-overview-tutorial.md)
   * [Create unique task names for the user task list](optimize-user-tasklist.md)
   * [Control and validate forms in the UI Designer](manage-control-in-forms.md)
+  * [Include a Web Components into Custom Widget](web-component-into-custom-widget-tutorial.md)
   * [Manage a list of documents](list-of-documents.md)
   * [Manage multiple references in Business Objects](bo-multiple-refs-tutorial.md)
   * [Map authorization rules](custom-authorization-rule-mapping.md)
   * [Use the rich textarea widget in a mail template](rta-mail-template.md)
   * [Manage dates and times in BDM and User Interfaces](datetimes-management-tutorial.md)
+  
