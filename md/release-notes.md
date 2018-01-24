@@ -146,6 +146,31 @@ has been removed.
 
 ## Bug fixes
 
+### Fixes in Bonita 7.6.2
+
+#### Fixes in Documentation
+* BS-17902 Broken link in documentation
+
+#### Fixes in Engine component
+* BS-13653 Unique index in group_ table contains nullable fields
+* BS-17456 Connector Generate pdf from and office document (document-converter) fails in Widlfly
+
+#### Fixes in Studio component
+* BS-17819 Diagram view in portal displays 3rd lane collapsed over 2nd lane
+* BS-17859 Rename a duplicated default profile in the Studio leads to en error
+* BS-17898 Studio does not exit nicely when calling workspace API without a valid license
+
+#### Fixes in UI Designer component
+* BS-17623 UID artifacts using UI Bootstrap migrated at Studio import time no longer work
+* BS-17852 Previewing a Fragment delete the associated .json file
+
+#### Fixes in Web component
+* BS-17694 Mobile portal doesn't show "Unable to log in' when credentials are wrong on Widlfly 
+* BS-17714 Translation key missing for "Process: " string in case's "More details" portal page
+* BS-17733 'Content-Disposition' header is filtered by RESTlet in REST API Extension
+* BS-17736 Default jaas-standard.cfg unclear in setup tool vs server/conf
+* BS-17826 bdm/businessData/ API returns response of type "text/plain" instead of "application/json"
+
 ### Fixes in Bonita 7.6.1
 
 #### Fixes in Documentation
