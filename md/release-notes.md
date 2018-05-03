@@ -1,16 +1,53 @@
 # Release notes
 
 ::: info
-**Note:** The 7.7 is currently work in progress (wip). The 7.7.0 GA is planned on June 2018.
+**Note:** Bonita 7.7.0 is currently work in progress (wip). Beta version is due 17th May and GA version is planned 7th June 2018.
 :::
 
+## New Product Offer
+Platform and Add-ons.
+New pricing model.
+
+
+## New values added
+
+<a id="git"/>
+
+### Collaborative development with Git
+Working as a team on a Bonita project, securing resources on a shared server, and keeping track of the resources revisions is now possible with the integration of Eclipse [EGit plug-in](http://wiki.eclipse.org/EGit/User_Guide) in Bonita Studio. Managing branches, viewing the differences between two revisions of a file, or between the local and remote repositories, as well as managing conflicts for a given file can be performed. Find more in the dedicated [documentation page section](workspaces-and-repositories.md#git) and in the howto: [Share a repository on GitHub](share-a-repository-on-github.md).
+
+<a id="bdm-access-control"/>
+
+### Business data access control (BDM AC)
+It is now possible to protect the access to BDM data through REST API calls.  
+This feature, [**BDM access control**](bdm-access-control.md), is available in Bonita Studio and works as a **white list** mechanism: through access rules, access is granted to entire business objects or to some attributes only, so that only users mapped with the selected **profiles** can access the data. 
+This new resource can be installed and updated on a Bonita platform while BPM services are running, via the Administrator Portal.
+
+## Confirmed values
+
+<a id="horizontal-scalability"/>
+
+### Horizontal scalability
+[ TBD ]  
+
+## Improvements
+
+<a id="ldap-synchronizer"/>
+
+### LDAP synchronizer to synchronize Custom User Information too
+More information than groups can now be synchronized from a Company's LDAP into a Bonita organization: the [LDAP synchronizer](ldap-synchronizer.md#cui) can input those additional fields into [Custom User Information](custom-user-information-in-bonita-bpm-studio.md). Such information is defined in Bonita Studio, and viewed or edited in Bonita Administrator Portal, and is used in actor filters for better task allocation.
 
 <a id="techonolgy-updates"/>
+
+## Technology updates
+
+* The supported Tomcat version for this new release is Tomcat 8.5.30, in the embedded Bonita Portal as well as in the Tomcat bundle.
 
 ### Other dependency updates
 
 * (Entreprise and Performance editions) Bonita 7.7 now supports usage of Hazelcast on AWS out-of-the box. Previous versions required
 modifying the Bonita installation.
+
 
 <a id="feature-removals"/>
 
@@ -41,9 +78,17 @@ Then just import the connector using `Development > Connectors > Import connecto
 ### Deprecated Workspace API
 The Workspace API tooling (headless studio build) has been deprecated. You are recommanded to use the *LA builder* which is part of the tooling suite of [Bonita Continuous Delivery add-on](https://documentation.bonitasoft.com/bcd/2.0/).
 
-### Technology updates
 
-* The supported Tomcat version for this new release is Tomcat 8.5.30 (included in the bundle).
 
-#### Acknowledgments
+## Limitations and known issues
+
+* MacOS environment: starting from MacOS El Capitan 10.11.4 (March 2016), new security rules block the launch of Bonita Studio. You must temporarily remove security on App launching in **System Preferences**>**Security & Confidentiality**.
+* Process display name is now used everywhere in Bonita Portal (when it has been set in the process design) except in the default provided Jasper reports.
+* The default living application layout does not re-encode the URL passed to the living application iframe anymore.
+
+## Bug fixes
+
+### Fixes in Bonita 7.7.0
+
+## Acknowledgments
 Thank you [Jerome Ventribout](https://github.com/jventrib) (Engine) for your contribution.
