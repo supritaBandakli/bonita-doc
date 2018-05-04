@@ -23,6 +23,14 @@ It is now possible to protect the access to BDM data through REST API calls.
 This feature, [**BDM access control**](bdm-access-control.md), is available in Bonita Studio and works as a **white list** mechanism: through access rules, access is granted to entire business objects or to some attributes only, so that only users mapped with the selected **profiles** can access the data. 
 This new resource can be installed and updated on a Bonita platform while BPM services are running, via the Administrator Portal.
 
+<a id="save-form"/>
+
+### Save Form
+When a form contains lots of fields, or when the user misses some information required to fill out the form at once, saving the form to complete it later is a need. This is now possible with the new "Save" widget, that can be added to any form. 
+JavaScript information entered by the user are temporarily saved in the browser local storage while the task is still in "pending" status. When the user comes back to the task, the values entered are displayed on the form, missing data can be added, and the form can be submitted to start a process instance or execute a task.
+
+
+
 ## Confirmed values
 
 <a id="horizontal-scalability"/>
